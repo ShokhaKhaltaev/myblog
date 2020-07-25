@@ -1,13 +1,7 @@
 <?php 
-	//session_start();
+
 	include('connection/connect.php');
-	//$fname = $login = $email = $password = $cpassword = '';
 	$errors = array('fname' => '' , 'login' => '', 'email' => '', 'password' => '', 'cpassword' => '');
-
-
-	//$fname = $login = $email = $password = $cpassword = '';
-	//if(isset($_POST['signup'])){
-
 
 
 	if(isset($_POST['signup'])){

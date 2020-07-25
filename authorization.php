@@ -14,4 +14,4 @@
 		header('Location: signup.php');
 	}
 
-	?>
+?>

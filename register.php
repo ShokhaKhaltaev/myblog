@@ -2,17 +2,17 @@
 <!DOCTYPE html>
 <html>
 	<?php include('templates/header.php'); ?>	
-	<head>
-		<style type="text/css">
-			body{
-				background-image: url(image/project_3.jpg);
-				background-size: cover;
-			}
-			label{
-				font-weight: bold;
-			}
-		</style>
-	</head>
+<head>
+	<style type="text/css">
+		body{
+			background-image: url(image/project_3.jpg);
+			background-size: cover;
+		}
+		label{
+			font-weight: bold;
+		}
+	</style>
+</head>
 	
 	<div class="container center">
 		<h4 class="center white-text">Log in</h4>

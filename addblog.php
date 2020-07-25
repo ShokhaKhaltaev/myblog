@@ -1,6 +1,5 @@
 <?php
 	include('connection/connect.php');
-	//include('connection.php');
 	
 	$title = $description = $blogContent = '';
 	$errors = array('title' => '', 'description' => '', 'blogContent' => '');
@@ -9,25 +8,21 @@
 		if(empty($_POST['title'])){
 			$errors['title'] = "Please write title of your blog";
 		}
-		//else{
 			$title = $_POST['title'];
-			//if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $title)){
-				//$errors['title'] = "Not valid format of text";
-		//}
+
 		if(empty($_POST['description'])){
 			$errors['description'] = "Please write title of your blog";
 		}
-		//else{
+
 			$description = $_POST['description'];
-			//if(!preg_match('/^[a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $description)){
-				//$errors['description'] = "Not valid format of text";}
-		//}
+			
+
 		if(empty($_POST['blogContent'])){
 			$errors['blogContent']='Not valid format of text';
 		}
-		//else{
+		
 			$blogContent = $_POST['blogContent'];
-		//}
+	
 
 		if(!array_filter($errors)){
 			$title = mysqli_real_escape_string($connection,$_POST['title']);
@@ -53,9 +48,6 @@
 		}
 
 	}
-
-
-
 
 ?>
 
