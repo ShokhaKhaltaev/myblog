@@ -53,6 +53,7 @@
 			<input type="hidden" name="idDelete" value="<?php echo $info['id'];?>">
 			<input type="submit" name="id_delete" value="Delete" class="btn red z-depth-0">
 		</form>
+		<a href="comment.php?id=<?php echo $info['id']; ?> " class="btn indigo center">Comments</a>
 	</div>
 
 	<?php include('templates/footer.php');?>

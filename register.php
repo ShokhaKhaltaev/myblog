@@ -5,7 +5,7 @@
 <head>
 	<style type="text/css">
 		body{
-			background-image: url(image/project_3.jpg);
+			background-image: url(image/wallpaper3.jpg);
 			background-size: cover;
 		}
 		label{

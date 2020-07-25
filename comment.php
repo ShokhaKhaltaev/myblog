@@ -1,21 +1,74 @@
-<?php 
-
+<?php
 	include('connection/connect.php');
-	
-	if(isset($_POST['comment'])){
-		$name = $_POST['commentname'];
-		$comment = $_POST['commenttext'];
 
-		$name = mysqli_real_escape_string($connection, $name);
-		$comment = mysqli_real_escape_string($connection, $comment);
-		$sql = "INSERT INTO comment(name, comment) VALUES('$name', '$comment')";
-		if(mysqli_query($connection, $sql)){
-			header('Location: detail.php');
-		}
-		else{
-			echo "query error". mysqli_error($connection);
-		}
 
-	}
+	$sqlCom = 'SELECT * FROM comment';
+	$result = mysqli_query($connection,$sqlCom);
+	$coms = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+	mysqli_free_result($result);
+	mysqli_close($connection);
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body{
+				background-image: url(image/wallpaper8.jpg);
+				background-size: cover;
+			}
+		#text-btn{
+			margin-top:30px;
+			padding: 40px;
+		}
+		textarea{
+			height: 650px;
+			width: 190px;
+
+		}
+		textarea:focus{
+			background: white;
+		}
+		.fcom{
+			height: 300px;
+		}
+		.ctext{
+			width: 620px;
+			height: 150px;
+			margin-bottom: 20px;
+		}
+		hr{
+			width: 900px;
+		}
+		li{
+			text-align: left;
+		}
+		input::placeholder{
+			color:black;
+		}
+		textarea::placeholder{
+			color: black;
+		}
+	</style>	
+</head>
+	
+	<?php include('templates/header.php'); ?>
+	<div class="container center">
+		<h4 class="indigo-text center">Comments!</h4>
+		<form action="comment_logic.php" method="POST" class="fcom">
+			<label class="center indigo-text">Name:</label>
+			<input type="text" name="com_name" placeholder="Name">
+			<textarea rows="45" cols="50" placeholder="Write a comment..." class="ctext" name="com_content" ></textarea>
+			<input type="submit" name="comment_button" value="Send" class="btn cyan" id="text_btn">
+		</form>
+		<div class="container left">
+			<ul class="left"><?php foreach($coms as $com){ ?>
+				<li><span class="indigo-text"><b><?php echo $com['name']; ?></b></span> : <span><?php echo $com['comment']; ?></span> <span class="right"><?php echo $com['created_at']; ?></span> </li>
+				<hr>
+			<?php } ?>
+			</ul>
+		</div>
+	</div>
+	
+</html>

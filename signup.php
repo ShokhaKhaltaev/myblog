@@ -69,7 +69,7 @@
 	<head>
 		<style type="text/css">
 			body{
-				background-image: url(image/project_4.jpg);
+				background-image: url(image/wallpaper5.jpg);
 				background-size: cover;
 			}
 		</style>
