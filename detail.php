@@ -11,7 +11,8 @@
 		$info = mysqli_fetch_assoc($resultbyid);
 
 		mysqli_free_result($resultbyid);
-		mysqli_close($connection);
+		//mysqli_close($connection);
+
 	}
 
 		if(isset($_POST['id_delete'])){
@@ -22,11 +23,15 @@
 			header('Location: index.php');	
 		}
 		else{
-			echo 'query error: ' . mysqli_error($connection);
+			echo 'query error: ' . mysqli_error($connection);}
+	
 		}
-	}
 
+	$sql_comment = 'SELECT * FROM comment';
+	$result_c = mysqli_query($connection,$sql_comment);
+	$com_id = mysqli_fetch_all($result_c, MYSQLI_ASSOC);
 
+	mysqli_free_result($result_c);
 
 ?>
 
@@ -54,13 +59,23 @@
 			<input type="hidden" name="idDelete" value="<?php echo $info['id'];?>">
 			<input type="submit" name="id_delete" value="Delete" class="btn red z-depth-0">
 		</form>
-		<form action="edit.php?id=<?php echo $info['id']; ?>" method="POST" class="newform">
-			<input type="hidden" name="id" value="<?php echo $info['id']; ?>"></input>
-			<input type = "submit"  name= "id_edit" value = "Edit" class = "btn cyan" ></input>
-		</form>
+		
+		<p class="line">Write a comment:</p>
+		<div class="container">
+			<form action="comment.php" method="POST" class="Comment">
+			<label>Name: </label>
+			<input type="text" name="commentname">
+			<textarea rows="15" cols="20" placeholder="Write a comment..." name="commenttext"></textarea>
+			<input type="submit" name="comment" class="btn cyan center" value="Send">
+			</form>
+		</div>
+		<ul>
+			<?php foreach($com_id as $com) {?>
+				<li><?php echo $com['name']; ?> : <?php echo $com['comment']; ?></li>
+			<?php } ?>	 
+		</ul>
 	</div>
 
-
 	<?php include('templates/footer.php');?>
-	?>
+
 </html>

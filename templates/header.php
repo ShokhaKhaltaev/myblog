@@ -53,6 +53,20 @@
       label{
         font-size: 16px;
       }
+      .Comment{
+        margin: 0px;
+        padding: 0px;
+        height:150px;
+      }
+
+      footer{
+        margin-top: 80px;
+      }
+      .line{
+        margin-top: 30px;
+        text-align: center;
+        color: blue;
+      }
 
     </style>
 </head>
