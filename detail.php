@@ -38,10 +38,13 @@
 			<h4 class="indigo-text">Viewing by:</h4>
             <b><?php echo $_SESSION['login']; ?>   
           <?php } ?></b></p>
+         <hr>
 		<h4 class="indigo-text">Title:</h4>
 		<p class="detail"><b><?php echo $info['title']; ?></b>
+		<hr>
 		<h4 class="indigo-text">Description:</h4>
 		<p class="detail"><b><?php echo $info['description']; ?></b></p>
+		<hr>
 		<h4 class="indigo-text">Content:</h4>
 		<div class="center">
 			<img src="image/<?php echo $info['image']; ?>" alt="There should be a photo" id="image">
