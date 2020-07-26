@@ -80,7 +80,7 @@
 			</a>
 			<ul class="right hide-on-med-and-down">
 				<li><a href="index.php">Home</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="about.php">About</a></li>
 				<li><a href="signup.php">Sign up</a></li>
 				<li><a href="register.php">Log in</a></li>
 				<li><span><a href="#" class="right grey-text">
