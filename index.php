@@ -1,7 +1,7 @@
 <?php 
 	include('connection/connect.php');
 
-	$sqlBlog = 'SELECT * FROM blog';
+	$sqlBlog = 'SELECT * FROM blog ORDER BY created_at';
 	$result = mysqli_query($connection,$sqlBlog);
 	$blogs = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -27,7 +27,7 @@
 							</a></div>
 					
 						<div class="card-content">
-						<span><?php echo $blog['created_at']; ?></span>
+						<span class="teal-text"><?php echo $blog['created_at']; ?></span>
 						<span class="card-title center"><h4><?php echo $blog['title']; ?></h4></span>
 						<div class="indigo-text center"><b>Description:</b></div> . <p class="indigo-text"><?php echo $blog['description']; ?></p>
 

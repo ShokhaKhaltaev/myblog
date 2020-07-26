@@ -55,10 +55,17 @@
 
 <!DOCTYPE html>
 <html>
+<head>
+	<style>
+		#aform{
+			height: 760px;
+		}
+	</style>
+</head>
 	<?php include('templates/header.php'); ?>
 	<section class="container grey-text">
 	<h4 class="center blue-text">Add a blog</h4>
-	<form class="white" action="addblog.php" method="POST" enctype="multipart/form-data">
+	<form class="white" id="aform" action="addblog.php" method="POST" enctype="multipart/form-data">
 		<label for="title">Title</label>
 		<input type="text" name="title" value="<?php echo htmlspecialchars($title);?>">	
 		<div class="red-text"><?php echo $errors['title']; ?></div>

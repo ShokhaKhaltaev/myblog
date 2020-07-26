@@ -22,7 +22,7 @@
 			<label class="white-text">Password</label>
 			<input type="password" name="password" class="white-text">
 			<div class="container">
-				<input type="submit" name="submit" value="Login" class="btn grey darken-4 z-depth-0"></div>
+				<input type="submit" name="submit" value="Login" class="btn cyan z-depth-0"></div>
 			<p class="white-text"><b>Don't have an account - <a href="signup.php">Sign up</b></a></p>
 		</form>
 	</div>
