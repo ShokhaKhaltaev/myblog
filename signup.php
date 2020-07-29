@@ -1,8 +1,9 @@
+
 <?php 
 
 	include('connection/connect.php');
 	$errors = array('fname' => '' , 'login' => '', 'email' => '', 'password' => '', 'cpassword' => '');
-
+	$taken = '';
 
 	if(isset($_POST['signup'])){
 		$fname = $_POST['fname'];
@@ -48,7 +49,7 @@
 			$num = mysqli_num_rows($get);
 
     		if($num == 1){
-    		echo "Username Already taken";
+    			$taken = "Username Already taken";
 			}
 			else{
 				if($password === $cpassword){
@@ -83,6 +84,7 @@
 			<div class="red-text"><?php echo $errors['fname']; ?></div>
 			<label class="black-text">Login</label>
 			<input type="text" name="login">
+			<div class="red-text"><?php echo $taken; ?></div>
 			<div class="red-text"><?php echo $errors['login']; ?></div>
 			<label class="black-text">Email</label>
 			<input type="email" name="email">
