@@ -31,6 +31,13 @@
 
 <!DOCTYPE html>
 <html>
+<head>
+	<style>
+		#comment{
+			margin-top: 20px;
+		}
+	</style>
+</head>
 	<?php include('templates/header.php');?>
 	<div class="container center">
 		<p><?php if(isset($_SESSION['login'])){ ?>
@@ -53,7 +60,7 @@
 			<input type="hidden" name="idDelete" value="<?php echo $info['id'];?>">
 			<input type="submit" name="id_delete" value="Delete" class="btn red z-depth-0">
 		</form>
-		<a href="comment.php?id=<?php echo $info['id']; ?> " class="btn indigo center">Comments</a>
+		<a href="comment.php?id=<?php echo $info['id']; ?> " id = "comment" class="btn indigo center">Comments</a>
 	</div>
 
 	<?php include('templates/footer.php');?>
