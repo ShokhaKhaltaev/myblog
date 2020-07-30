@@ -8,7 +8,13 @@
 		$id  = mysqli_real_escape_string($connection, $_GET['id']);
 		$sqlbyid = "SELECT * FROM blog WHERE id= $id ";
 		$resultbyid = mysqli_query($connection, $sqlbyid);
-		$info = mysqli_fetch_assoc($resultbyid);
+		while($row = mysqli_fetch_assoc($resultbyid)){
+			$title_i = $row['title'];
+			$description_i = $row['description'];
+			$image_i = $row['image'];
+			$blog_i = $row['blog'];
+			$id_i = $row['id'];
+		}
 
 		mysqli_free_result($resultbyid);
 		mysqli_close($connection);
@@ -46,21 +52,28 @@
             <hr>   
           <?php } ?></b></p>
 		<h4 class="indigo-text">Title:</h4>
-		<p class="detail"><b><?php echo $info['title']; ?></b>
+		<p class="detail"><b><?php echo $title_i; ?></b>
 		<hr>
 		<h4 class="indigo-text">Description:</h4>
-		<p class="detail"><b><?php echo $info['description']; ?></b></p>
+		<p class="detail"><b><?php echo $description_i; ?></b></p>
 		<hr>
 		<h4 class="indigo-text">Content:</h4>
 		<div class="center">
-			<img src="image/<?php echo $info['image']; ?>" alt="There should be a photo" id="image">
+			<img src="image/<?php echo $image_i; ?>" alt="There should be a photo" id="image">
 		</div>
-		<p class="detail"><?php echo $info['blog'];?></p>
+		<p class="detail"><?php echo $blog_i;?></p>
+		
+		<!-- Put this div tag to the place, where the Comments block will be -->
+		<div id="vk_comments"></div>
+			<script type="text/javascript">
+				VK.Widgets.Comments("vk_comments", {limit: 10, width: "600", attach: "*"});
+			</script>
+		
 		<form action="detail.php" method="POST" class="newform">
-			<input type="hidden" name="idDelete" value="<?php echo $info['id'];?>">
+			<input type="hidden" name="idDelete" value="<?php echo $id_i;?>">
 			<input type="submit" name="id_delete" value="Delete" class="btn red z-depth-0">
 		</form>
-		<a href="comment.php?id=<?php echo $info['id']; ?> " id = "comment" class="btn indigo center">Comments</a>
+		<a href="comment.php?id=<?php echo $id_i; ?> " id = "comment" class="btn indigo center">Comments</a>
 	</div>
 
 	<?php include('templates/footer.php');?>

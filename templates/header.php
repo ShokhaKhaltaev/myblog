@@ -69,6 +69,12 @@
       }
 
     </style>
+    <!-- Put this script tag to the <head> of your page -->
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+
+    <script type="text/javascript">
+      VK.init({apiId: 7553529, onlyWidgets: true});
+    </script>
     
 </head>
 <body class="grey lighten-2">
@@ -102,7 +108,7 @@
 		</a></span></li>
     <li><a href="register.php">Log in</a></li>
 		<li><a href="index.php">Home</a></li>
-		<li><a href="#">About</a></li>
+		<li><a href="about.php">About</a></li>
 		<li><a href="signup.php">Sign up</a></li>
 		
     <li><a href="logout.php" class="btn red">Logout</a></li>
