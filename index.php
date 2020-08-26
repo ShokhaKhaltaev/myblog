@@ -1,12 +1,13 @@
 <?php 
 	include('connection/connect.php');
 
-	$sqlBlog = 'SELECT * FROM blog ORDER BY created_at';
+    $sqlBlog = 'SELECT * FROM blog ORDER BY created_at';
 	$result = mysqli_query($connection,$sqlBlog);
-	
+
 
 	//mysqli_free_result($result);
 	//mysqli_close($connection);
+
 
 ?>
 
@@ -14,9 +15,15 @@
 <html>
 	<?php include('templates/header.php'); ?>
 		<div class="container">
-			<a href="addblog.php" class="btn-large orange right brand">Create</a>
+			<?php if(!isset($_SESSION['login'])) {?>
+				<div class="card-panel light-blue darken-1 ">
+				<span><a href="register.php" class="white-text" >Please log in to add a blog!</a></span>
+				</div> 
+			<?php }?>
+			<?php if(isset($_SESSION['login'])) { ?>
+				<a href="addblog.php" class="btn-large orange right brand">Create</a>
+			<?php }?>
 			<?php while($row = mysqli_fetch_assoc($result)) { ?>
-				<?php if(isset($row['id'])){ ?>
 				<div class="row">
 				<div class="col s12 m12 l12">
 					<div class="card" id="card">
@@ -35,17 +42,14 @@
 						
 					
 						<div class="card-action right-align">
-							<a href="edit.php?id=<?php echo $row['id'];?>" class="btn cyan">Edit</a>
-							<a href="detail.php?id=<?php echo $row['id'];?>" class="btn red">Delete</a>
-							<a href="detail.php?id=<?php echo $row['id'];?>">More info</a>
+						    <a href="detail.php?id=<?php echo $row['id'];?>" >
+						    More info</a>
 						</div>
-
-					</div>
+                    </div>
 				</div>
-			<?php } ?>
-			<?php } ?>
-			
 				</div>
+				<?php }?>
+		</div>
 
 	<?php include('templates/footer.php'); ?>
 </html>

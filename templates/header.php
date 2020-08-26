@@ -1,5 +1,6 @@
 <?php 
   session_start();
+
 ?>
 <head>
 	<title>YAKO</title>
@@ -84,21 +85,25 @@
 			<a href="#" class="sidenav-trigger" data-target="mobile-links">
 				<i class="material-icons">menu</i>
 			</a>
+      
 			<ul class="right hide-on-med-and-down">
 				<li><a href="index.php">Home</a></li>
 				<li><a href="about.php">About</a></li>
 				<li><a href="signup.php">Sign up</a></li>
 				<li><a href="register.php">Log in</a></li>
-				<li><span><a href="#" class="right grey-text">
-					<i class="large material-icons">account_circle</i>
-				</a></span></li>
+        <?php if(isset($_SESSION['login'])){ ?>
+				  <li><span><a href="myprofile.php?id=<?php echo $_SESSION['id']; ?>" class="right grey-text">
+					 <i class="large material-icons">account_circle</i>
+				  </a></span></li>
+        <?php }?>
         <li><a href="logout.php" class="btn red">Logout</a></li>
         <li class="white-text">
           <?php if(isset($_SESSION['login'])){ ?>
-            Hello, <?php echo $_SESSION['login']; ?> !   
+            Hello, <?php echo $_SESSION['login']; ?>   
           <?php } ?> 
         </li>
 			</ul>	
+     
 		</div>
 	</nav>
 
@@ -110,7 +115,9 @@
 		<li><a href="index.php">Home</a></li>
 		<li><a href="about.php">About</a></li>
 		<li><a href="signup.php">Sign up</a></li>
-		
+    <?php if(isset($_SESSION['login'])){ ?>
+      <li><a href="myprofile.php">My profile</a>
+		  <?php }?>
     <li><a href="logout.php" class="btn red">Logout</a></li>
   
 	</ul>

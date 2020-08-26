@@ -1,4 +1,3 @@
-
 <?php 
 
 	include('connection/connect.php');
@@ -11,6 +10,8 @@
 		$email = $_POST['email'];
 		$password = md5($_POST['password']);
 		$cpassword = md5($_POST['cpassword']);
+		$target_photo = "image/".basename($_FILES['image']['name']);
+		$image_name = $_FILES['image']['name'];
 		
 		if(empty($fname)){
 			$errors['fname'] = "Full name is required";
@@ -47,20 +48,34 @@
 			$select = "SELECT * FROM users WHERE login = '$login'";
 			$get = mysqli_query($connection,$select);
 			$num = mysqli_num_rows($get);
+			
+			
 
     		if($num == 1){
     			$taken = "Username Already taken";
 			}
 			else{
 				if($password === $cpassword){
-					$sql = "INSERT INTO users (name, login, email, password) VALUES ('$fname', '$login', '$email', '$password')";
+					$sql = "INSERT INTO users (name, login, email, password, image) VALUES ('$fname', '$login', '$email', '$password', '$image_name')";
 					$result = mysqli_query($connection, $sql);
-					header('Location: register.php');}
-				else{
-					header('Location: signup.php');
-				}
-			}
-		}
+					if($result){
+					    if(move_uploaded_file($_FILES['image']['tmp_name'], $target_photo)){
+					        $msg = "Image uploaded successfully";
+					        header('Location: register.php');
+				        }
+				        else{
+					        $msg = "There was a big problem in uploading file";
+					        
+				        }
+					}    
+				    else{
+					    header('Location: signup.php');
+				    }
+			    }
+		    }
+		
+		
+	    }
 	}
 
 ?>
@@ -68,8 +83,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<style type="text/css">
+		<style>
 			body{
+				background-image: url(image/wallpaper5.jpg);
+				background-size: cover;
+			}
+			@media only screen and (max-width: 600px){
+			    body{
 				background-image: url(image/wallpaper5.jpg);
 				background-size: cover;
 			}
@@ -78,13 +98,13 @@
 	<?php include('templates/header.php'); ?>
 	<div class="container center">
 		<h4 class="center indigo-text">Sign up</h4>
-		<form action="signup.php" method="POST" class='sform'>
+		<div class="red-text "><?php echo $taken; ?></div>
+		<form action="signup.php" method="POST" class='sform' enctype="multipart/form-data">
 			<label class="black-text">Full name</label>
 			<input type="text" name="fname">
 			<div class="red-text"><?php echo $errors['fname']; ?></div>
 			<label class="black-text">Login</label>
 			<input type="text" name="login">
-			<div class="red-text"><?php echo $taken; ?></div>
 			<div class="red-text"><?php echo $errors['login']; ?></div>
 			<label class="black-text">Email</label>
 			<input type="email" name="email">
@@ -95,6 +115,9 @@
 			<label class="black-text">Confirm password</label>
 			<input type="password" name="cpassword">
 			<div class="red-text"><?php echo $errors['cpassword']; ?></div>
+			<input type="hidden" name="size" value="1000000">
+			<p class="orange-text">Upload your image(Optional)</p>
+			<input type="file" name="image" value="Uplaod an image">
 			<div class="center">
 			<p>Already signed in - <a href="register.php">Login</a></p>
 			<input type="submit" name="signup" value="Sign up" class="btn cyan z-depth-0"></div>
